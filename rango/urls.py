@@ -25,6 +25,8 @@ urlpatterns = [
     # 2nd para: Tells Django what view should to call when the pattern 'about/' is matched
     # http://127.0.0.1:8000/rango/about
     path('about/', views.about, name='about'),
+
+    path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
 ]
 
 
