@@ -13,7 +13,21 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# BSE_DIR = <workspace>/tango_with_django_project
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# 使用os.path.join函数把BASE_DIR变量和'templates'字符串拼接起来
+# TEMPLATE_DIR = <workspace>/tango_with_django_project/templates/
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+# STATIC_DIR = <workspace>/tango_with_django_project/static/
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+
+# A new data structure, a list of paths with which Django will expect to find static files
+STATICFILES_DIRS = [STATIC_DIR, ]
+
+# MEDIA_DIR = <workspace>/tango_with_django_project/media/
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,7 +70,7 @@ ROOT_URLCONF = 'tango_with_django_project_2539644.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -119,4 +134,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# http://120.0.0.1:8000/static/
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = MEDIA_DIR

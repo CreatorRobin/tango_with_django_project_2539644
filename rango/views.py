@@ -8,9 +8,16 @@ from django.shortcuts import render
 # HttpResponse对象的参数是一个字符串，所以在此index视图函数中，参数是字符串"Rango says hey there partner!!!"
 # 参数名叫request
 def index(request):
-    return HttpResponse("Rango says hey there partner!!! <a href='/rango/about/'>About</a>")
+    # Construct a dictionary tp pass to the template engine as tis context
+    context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupacake!"}
 
+    # Return a rendered response to send to the client
+    # para: request对象、模板、context字典
+    # 工作原理：render()函数把cotext字典中的数据代入模板，然后生成完整的html页面，作为HttpResponse对象返回，分发给Web浏览器
+    return render(request, 'rango/index.html', context=context_dict)
 
 # about视图函数 or about view method，参数名request 
 def about(request):
-    return HttpResponse("Rango says here is the about page!!! <a href ='/rango/'>Index</a>")
+    context_dict = {'boldmessage': "This tutorial has been put together by Chongjin ZHANG"}
+    return render(request, 'rango/about.html', context=context_dict)
+    # return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")

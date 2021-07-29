@@ -16,8 +16,14 @@ urlpatterns = [
     #   Django only find a match if there is nothing after http://127.0.0.1:8000/
     # 2nd para: Tells Django what view should to call when the pattern '' is matched
     # 3rd para: optiona, it is name, we can reference the URL mapping by name rather than URL itself
+    # http://127.0.0.1:8000/rango
     path('', views.index, name='index'),
 
+
+    # 1st para: String to match, 'about/' String, 
+    #   Django only find a match if there is '/about' after http://127.0.0.1:8000/
+    # 2nd para: Tells Django what view should to call when the pattern 'about/' is matched
+    # http://127.0.0.1:8000/rango/about
     path('about/', views.about, name='about'),
 ]
 
