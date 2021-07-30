@@ -4,8 +4,8 @@
 - [x] CHAP3
 - [x] CHAP4
 - [x] CHAP5
-- [ ] CHAP6
-- [ ] CHAP7
-- [ ] CHAP8
-- [ ] CHAP9
+- [x] CHAP6
+- [x] CHAP7
+- [x] CHAP8
+- [x] CHAP9
 - [ ] CHAP10
