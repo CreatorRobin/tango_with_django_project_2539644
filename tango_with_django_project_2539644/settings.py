@@ -34,7 +34,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q&o9+rn!axx5^d*rz90na-9c3f^hg$ay1neq&!r9tcx@pfr+e2'
+SECRET_KEY = 'p$5&+rn!axx5^d*rz90na-6@6^&*45^y1neq&!r9tcx@pfr+e2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,14 +46,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    # visit ID authority system
     'django.contrib.auth',
-    # trace models of the database
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 告诉Django我们安装了一个新的应用rango
     'rango',
 ]
 
