@@ -46,7 +46,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    # visit ID authority system
     'django.contrib.auth',
+    # trace models of the database
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -84,6 +86,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'tango_with_django_project_2539644.wsgi.application'
 
 
@@ -119,6 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
+
+LOGIN_URL = 'rango:login'
 
 LANGUAGE_CODE = 'en-us'
 
