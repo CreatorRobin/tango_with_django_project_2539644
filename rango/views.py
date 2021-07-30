@@ -1,9 +1,16 @@
 
 # 从 django.http 模块中导入 HttpResponse对象
-from django.shortcuts import render
 from django.http import HttpResponse
+
 from rango.models import Category
 from rango.models import Page
+from rango.forms import CategoryForm
+from rango.forms import PageForm
+
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse
+
 
 # 在view.py中，一个函数就是一个视图，这里编写名叫index的视图；
 # 每个视图函数至少包含一个参数，也就是一个HttpResponse对象，也就是说视图函数必须返回一个HttpResponse对象
@@ -37,8 +44,54 @@ def show_category(request, category_name_slug):
 
         context_dict['pages'] = pages
         context_dict['category'] = category
+        
     except Category.DoesNotExist:
         context_dict['pages'] = None
         context_dict['category'] = None
     
     return render(request, 'rango/category.html', context=context_dict)
+
+def add_category(request):
+    form = CategoryForm()
+    # is that HTTP POST?
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        # is form data valid?
+        if form.is_valid():
+            # save the new inputted category to the database
+            form.save(commit=True)
+            # redirect users go to the INDEX VIEW!
+            return redirect('/rango/')
+        else:
+            print(form.errors)
+    return render(request, 'rango/add_category.html', {'form': form})
+
+
+def add_page(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except:
+        category = None
+    
+    # Category does not exist (YES) create a new page for that
+    if category is None:
+        return redirect('/rango/')
+
+    form = PageForm()
+
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+
+        if form.is_valid():
+            if category:
+                page = form.save(commit=False)
+                page.category = category
+                page.views = 0
+                page.save()
+
+                return redirect(reverse('rango:show_category', kwargs={'category_name_slug': category_name_slug}))
+        else:
+            print(form.errors)  # This could be better done; for the purposes of TwD, this is fine. DM.
+    
+    context_dict = {'form': form, 'category': category}
+    return render(request, 'rango/add_page.html', context=context_dict)
