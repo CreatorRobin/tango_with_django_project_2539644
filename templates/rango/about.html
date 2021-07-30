@@ -1,31 +1,15 @@
-
 <!DOCTYPE html>
-
 {% load staticfiles %}
 
-<html>
-    <head>
-        <title>Rango</title> 
-    </head>
+{% block title_block %}
+    About Rango
+{% endblock %}
+  
+{% block body_block %}      
+    <h1>Rango says...</h1>
+    <h2>here is the about page.</h2> 
+    <h2>This tutorial has been put together by David Maxwell.</h2> <br />
 
-    <body>
-        <h1>Rango says...</h1>
-        <h2>here is the About page.</h2>
-        <h3>This tutorial has been put together by Chongjin ZHANG.</your-name></h3>
-
-        <div>
-            hey there partner! <br />
-            <strong>{{ boldmessage }}</strong><br /> 
-        </div>
-
-        <div>
-            <a href="/rango/">index</a><br />
-
-            <img src="{% static 'images/rango1.jpg' %}" alt="Picture of Rango" />
-
-            <img src="{{ MEDIA_URL }}cat.jpeg" alt=" Picture of a Cat" />
-        </div>
-
-    </body>
-
-</html>
+    <img src="{% static 'images/rango1.jpg' %}" alt=" Picture of Rango " />
+    <img src="{{ MEDIA_URL }}cat.jpeg" alt=" Picture of a Cat " />
+{% endblock %}
